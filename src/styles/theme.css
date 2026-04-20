@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+  --midnight: #00000b;
+  --cream: #fbf9f5;
+  --champagne: #d4af85;
+  --coral: #e63946;
+  --slate: #6b7280;
+  
+  --font-serif: 'Noto Serif', serif;
+  --font-sans: 'Manrope', sans-serif;
+  
+  --radius-sharp: 4px;
+  --glass-blur: blur(20px);
+  --glass-opacity: rgba(251, 249, 245, 0.8);
+  
+  --margin-x: 80px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--midnight);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: var(--font-sans);
+  border-radius: var(--radius-sharp);
+  transition: all 0.3s ease;
+}
+
+input, textarea, select {
+  font-family: var(--font-sans);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--midnight);
+  outline: none;
+}
+
+/* Helper Classes */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--margin-x);
+}
+
+.glass-nav {
+  backdrop-filter: var(--glass-blur);
+  background: var(--glass-opacity);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.coral-btn {
+  background-color: var(--coral);
+  color: white;
+  padding: 12px 24px;
+  font-weight: 600;
+}
+
+.coral-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.ghost-btn {
+  background: transparent;
+  color: var(--midnight);
+  padding: 12px 24px;
+  font-weight: 600;
+}
+
+.champagne-accent {
+  color: var(--champagne);
+}
+
+.italic-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
