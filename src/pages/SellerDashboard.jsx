@@ -20,7 +20,7 @@ const SellerDashboard = () => {
       </header>
 
       {/* Metric Cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', marginBottom: '48px' }}>
+      <div className="metric-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', marginBottom: '48px' }}>
         {[
           { label: 'Active Listings', value: '24', color: 'var(--midnight)' },
           { label: 'Pending Requests', value: '07', color: 'var(--coral)' },
@@ -34,7 +34,7 @@ const SellerDashboard = () => {
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '48px' }}>
+      <div className="dashboard-layout" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '48px' }}>
         {/* Recent Requests */}
         <section>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
@@ -118,6 +118,24 @@ const SellerDashboard = () => {
           </div>
         </section>
       </div>
+
+      <style>{`
+        @media (max-width: 1200px) {
+          .metric-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 992px) {
+          .dashboard-layout {
+            grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 576px) {
+          .metric-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </SellerLayout>
   );
 };

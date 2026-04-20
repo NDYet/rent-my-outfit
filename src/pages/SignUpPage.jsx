@@ -34,14 +34,15 @@ const SignUpPage = () => {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', backgroundColor: 'var(--cream)', transition: 'all 0.5s ease' }}>
+    <div className="responsive-flex" style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--cream)', transition: 'all 0.5s ease' }}>
       
       {/* Left Side: Dynamic Editorial Image */}
-      <div style={{
+      <div className="responsive-split-half" style={{
         flex: 1,
         position: 'relative',
         backgroundColor: 'var(--midnight)',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        minHeight: '35vh'
       }}>
         <div style={{
           position: 'absolute',
@@ -82,8 +83,8 @@ const SignUpPage = () => {
       </div>
 
       {/* Right Side: Form */}
-      <div style={{
-        width: '50%',
+      <div className="responsive-split-half mobile-p-y" style={{
+        flex: 1,
         padding: '0 var(--margin-x)',
         display: 'flex',
         flexDirection: 'column',

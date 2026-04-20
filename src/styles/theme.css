@@ -99,3 +99,44 @@ input, textarea, select {
   font-family: var(--font-serif);
   font-style: italic;
 }
+
+/* --- Responsive Utilities --- */
+
+@media (max-width: 1024px) {
+  :root {
+    --margin-x: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --margin-x: 20px;
+  }
+
+  /* Utility to stack flex columns vertically on mobile */
+  .responsive-flex {
+    flex-direction: column !important;
+  }
+
+  /* Replaces hardcoded width: 50% for split screens */
+  .responsive-split-half {
+    width: 100% !important;
+  }
+  
+  /* Reverse stacking order if needed (e.g., image on top of form) */
+  .responsive-flex-reverse {
+    flex-direction: column-reverse !important;
+  }
+
+  .hide-on-mobile {
+    display: none !important;
+  }
+  
+  /* Typography scaling */
+  h1 { font-size: clamp(36px, 8vw, 64px) !important; }
+  h2 { font-size: clamp(28px, 6vw, 48px) !important; }
+  h3 { font-size: clamp(24px, 5vw, 36px) !important; }
+  
+  /* Spacing overrides */
+  .mobile-p-y { padding-top: 40px !important; padding-bottom: 40px !important; }
+}

@@ -24,10 +24,10 @@ const BrowsePage = () => {
         </div>
       </header>
 
-      <main className="container" style={{ display: 'flex', padding: '64px var(--margin-x)', gap: '64px' }}>
+      <main className="container responsive-flex" style={{ display: 'flex', padding: '64px var(--margin-x)', gap: '64px' }}>
         
         {/* Sidebar Filters */}
-        <aside style={{ flex: '0 0 240px' }}>
+        <aside className="filters-sidebar" style={{ flex: '0 0 240px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px' }}>
             <span style={{ fontWeight: '700', textTransform: 'uppercase', fontSize: '12px', letterSpacing: '1px' }}>Filters</span>
             <SlidersHorizontal size={16} />
@@ -83,7 +83,7 @@ const BrowsePage = () => {
             </select>
           </div>
 
-          <div style={{ columnCount: 2, columnGap: '32px' }}>
+          <div className="product-grid" style={{ columnCount: 2, columnGap: '32px' }}>
             {products.map((p, i) => (
               <Link to={`/product/${p.id}`} key={i} style={{ display: 'block', breakInside: 'avoid', marginBottom: '32px' }}>
                 <div style={{ position: 'relative', height: p.height, borderRadius: 'var(--radius-sharp)', overflow: 'hidden', marginBottom: '16px' }}>
@@ -100,6 +100,18 @@ const BrowsePage = () => {
       </main>
 
       <Footer />
+      <style>{`
+        @media (max-width: 768px) {
+          .filters-sidebar {
+            width: 100% !important;
+            flex: none !important;
+            margin-bottom: 40px;
+          }
+          .product-grid {
+            column-count: 1 !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

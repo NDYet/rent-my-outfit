@@ -9,7 +9,7 @@ const Footer = () => {
       borderTop: 'none',
       color: 'var(--midnight)'
     }}>
-      <div style={{
+      <div className="footer-grid" style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr 1fr',
         gap: '40px'
@@ -55,7 +55,7 @@ const Footer = () => {
         </div>
       </div>
       
-      <div style={{
+      <div className="footer-bottom" style={{
         marginTop: '80px',
         paddingTop: '24px',
         display: 'flex',
@@ -72,6 +72,26 @@ const Footer = () => {
           <span>LinkedIn</span>
         </div>
       </div>
+      
+      <style>{`
+        @media (max-width: 992px) {
+          .footer-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+          .footer-bottom {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 16px !important;
+            text-align: center !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 };

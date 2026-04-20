@@ -5,12 +5,12 @@ import { Search, ChevronDown, User, Star, MessageSquare } from 'lucide-react';
 const RentalRequests = () => {
   return (
     <SellerLayout>
-      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '48px' }}>
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '24px', marginBottom: '48px' }}>
         <div>
           <h1 style={{ fontSize: '32px', marginBottom: '8px' }}>Rental Requests</h1>
           <p style={{ color: 'var(--slate)', fontSize: '14px' }}>Manage your garment inquiries</p>
         </div>
-        <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '24px', alignItems: 'center', width: '100%', maxWidth: 'max-content' }}>
           <div style={{ position: 'relative' }}>
             <Search size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--slate)' }} />
             <input type="text" placeholder="Search requests..." style={{ 
@@ -18,14 +18,15 @@ const RentalRequests = () => {
               border: '1px solid rgba(0,0,0,0.1)', 
               borderRadius: '20px',
               fontSize: '13px',
-              width: '240px'
+              width: '100%',
+              maxWidth: '300px'
             }} />
           </div>
         </div>
       </header>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: '32px', borderBottom: '1px solid rgba(0,0,0,0.05)', marginBottom: '40px' }}>
+      <div style={{ display: 'flex', gap: '32px', borderBottom: '1px solid rgba(0,0,0,0.05)', marginBottom: '40px', overflowX: 'auto', whiteSpace: 'nowrap', paddingBottom: '4px' }}>
         {['All', 'Pending', 'Accepted', 'Declined'].map((tab, i) => (
           <div key={tab} style={{ 
             padding: '16px 0', 
@@ -44,8 +45,8 @@ const RentalRequests = () => {
       </div>
 
       {/* Table Mockup */}
-      <div style={{ backgroundColor: 'white', borderRadius: 'var(--radius-sharp)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1.5fr 1fr 1fr 1fr', padding: '20px 32px', borderBottom: '1px solid rgba(0,0,0,0.05)', fontSize: '11px', fontWeight: '700', color: 'var(--slate)', textTransform: 'uppercase', letterSpacing: '1px' }}>
+      <div className="table-responsive" style={{ backgroundColor: 'white', borderRadius: 'var(--radius-sharp)', overflowX: 'auto' }}>
+        <div style={{ minWidth: '800px', display: 'grid', gridTemplateColumns: '2fr 1fr 1.5fr 1fr 1fr 1fr', padding: '20px 32px', borderBottom: '1px solid rgba(0,0,0,0.05)', fontSize: '11px', fontWeight: '700', color: 'var(--slate)', textTransform: 'uppercase', letterSpacing: '1px' }}>
           <div>Item</div>
           <div>Buyer</div>
           <div>Booking Window</div>
@@ -60,7 +61,7 @@ const RentalRequests = () => {
           { item: 'Jacquemus Pleated Skirt', img: '/red_gown.png', buyer: 'Elena R.', handle: '@elena_r', range: 'Oct 18 - Oct 20', days: '3 days', price: '₹12,000', status: 'Pending' },
           { item: 'Sabyasachi Heritage Lehenga', img: '/lehenga.png', buyer: 'Sarah J.', handle: '@sarahj', range: 'Oct 20 - Oct 22', days: '3 days', price: '₹14,500', status: 'Accepted' }
         ].map((row, i) => (
-          <div key={i} style={{ borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
+          <div key={i} style={{ minWidth: '800px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1.5fr 1fr 1fr 1fr', padding: '24px 32px', alignItems: 'center', fontSize: '14px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                 <img src={row.img} style={{ width: '60px', height: '60px', borderRadius: '4px', objectFit: 'cover' }} />

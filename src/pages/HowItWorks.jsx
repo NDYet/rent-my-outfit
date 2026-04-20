@@ -73,7 +73,8 @@ const HowItWorks = () => {
         <section style={{ padding: '80px 0', minHeight: '600px', display: 'flex', alignItems: 'center' }}>
           <div className="container" style={{ maxWidth: '1200px', width: '100%' }}>
             
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {/* Desktop Roadmap view */}
+            <div className="hide-on-mobile" style={{ display: 'flex', flexDirection: 'column' }}>
               
               {/* ROW 1: Top Text (Step 1 & Step 3) */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', padding: '0 5%' }}>
@@ -93,7 +94,6 @@ const HowItWorks = () => {
               {/* ROW 2: The Winding Road & Badges */}
               <div style={{ position: 'relative', width: '100%', height: '160px' }}>
                 <svg viewBox="0 0 1200 160" preserveAspectRatio="none" style={{ width: '100%', height: '100%', display: 'block' }}>
-                  {/* Thick dark road */}
                   <path 
                     d="M -50 40 C 300 40, 300 120, 600 120 C 900 120, 900 40, 1250 40" 
                     fill="none" 
@@ -101,7 +101,6 @@ const HowItWorks = () => {
                     strokeWidth="32" 
                     strokeLinecap="round"
                   />
-                  {/* White dashed lines inside the road */}
                   <path 
                     d="M -50 40 C 300 40, 300 120, 600 120 C 900 120, 900 40, 1250 40" 
                     fill="none" 
@@ -111,54 +110,36 @@ const HowItWorks = () => {
                   />
                 </svg>
 
-                {/* Badge 1 */}
-                <div style={{ 
-                  position: 'absolute', top: '8px', left: '20%', transform: 'translateX(-50%)',
-                  width: '64px', height: '64px', borderRadius: '50%', 
-                  backgroundColor: activeTab === 'renter' ? 'var(--coral)' : 'var(--midnight)', 
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', 
-                  color: 'white', fontWeight: 'bold', fontSize: '24px', fontFamily: 'var(--font-serif)', 
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.2)', border: '4px solid var(--cream)', zIndex: 2
-                }}>
-                  {currentSteps[0].num}
-                </div>
-
-                {/* Badge 2 */}
-                <div style={{ 
-                  position: 'absolute', top: '88px', left: '50%', transform: 'translateX(-50%)',
-                  width: '64px', height: '64px', borderRadius: '50%', 
-                  backgroundColor: activeTab === 'renter' ? 'var(--coral)' : 'var(--midnight)', 
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', 
-                  color: 'white', fontWeight: 'bold', fontSize: '24px', fontFamily: 'var(--font-serif)', 
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.2)', border: '4px solid var(--cream)', zIndex: 2
-                }}>
-                  {currentSteps[1].num}
-                </div>
-
-                {/* Badge 3 */}
-                <div style={{ 
-                  position: 'absolute', top: '8px', left: '80%', transform: 'translateX(-50%)',
-                  width: '64px', height: '64px', borderRadius: '50%', 
-                  backgroundColor: activeTab === 'renter' ? 'var(--coral)' : 'var(--midnight)', 
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', 
-                  color: 'white', fontWeight: 'bold', fontSize: '24px', fontFamily: 'var(--font-serif)', 
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.2)', border: '4px solid var(--cream)', zIndex: 2
-                }}>
-                  {currentSteps[2].num}
-                </div>
+                {/* Badges */}
+                <div style={{ position: 'absolute', top: '8px', left: '20%', transform: 'translateX(-50%)', width: '64px', height: '64px', borderRadius: '50%', backgroundColor: activeTab === 'renter' ? 'var(--coral)' : 'var(--midnight)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '24px', fontFamily: 'var(--font-serif)', boxShadow: '0 8px 24px rgba(0,0,0,0.2)', border: '4px solid var(--cream)', zIndex: 2 }}>{currentSteps[0].num}</div>
+                <div style={{ position: 'absolute', top: '88px', left: '50%', transform: 'translateX(-50%)', width: '64px', height: '64px', borderRadius: '50%', backgroundColor: activeTab === 'renter' ? 'var(--coral)' : 'var(--midnight)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '24px', fontFamily: 'var(--font-serif)', boxShadow: '0 8px 24px rgba(0,0,0,0.2)', border: '4px solid var(--cream)', zIndex: 2 }}>{currentSteps[1].num}</div>
+                <div style={{ position: 'absolute', top: '8px', left: '80%', transform: 'translateX(-50%)', width: '64px', height: '64px', borderRadius: '50%', backgroundColor: activeTab === 'renter' ? 'var(--coral)' : 'var(--midnight)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '24px', fontFamily: 'var(--font-serif)', boxShadow: '0 8px 24px rgba(0,0,0,0.2)', border: '4px solid var(--cream)', zIndex: 2 }}>{currentSteps[2].num}</div>
               </div>
 
               {/* ROW 3: Bottom Text (Step 2) */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '0 5%' }}>
-                <div style={{ width: '30%' }}></div> {/* Empty space */}
+                <div style={{ width: '30%' }}></div>
                 <div style={{ width: '30%', textAlign: 'center', paddingTop: '16px', opacity: 0, animation: 'fadeInUp 0.6s forwards 0.4s' }}>
                   <h3 style={{ fontSize: '20px', fontWeight: 'bold' }}>Step 2</h3>
                   <h4 style={{ fontSize: '18px', fontFamily: 'var(--font-serif)', color: activeTab === 'renter' ? 'var(--coral)' : 'var(--slate)', marginBottom: '8px' }}>{currentSteps[1].title}</h4>
                   <p style={{ fontSize: '13px', color: 'var(--slate)', lineHeight: '1.5' }}>{currentSteps[1].desc}</p>
                 </div>
-                <div style={{ width: '30%' }}></div> {/* Empty space */}
+                <div style={{ width: '30%' }}></div>
               </div>
+            </div>
 
+            {/* Mobile Vertical View */}
+            <div className="mobile-only" style={{ display: 'none', flexDirection: 'column', gap: '48px' }}>
+              {currentSteps.map((step, index) => (
+                <div key={index} style={{ textAlign: 'center', opacity: 0, animation: 'fadeInUp 0.6s forwards', animationDelay: `${index * 0.2}s` }}>
+                  <div style={{ width: '56px', height: '56px', borderRadius: '50%', backgroundColor: activeTab === 'renter' ? 'var(--coral)' : 'var(--midnight)', margin: '0 auto 16px auto', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '20px', fontFamily: 'var(--font-serif)', border: '4px solid var(--cream)', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                    {step.num}
+                  </div>
+                  <h3 style={{ fontSize: '22px', fontWeight: 'bold', marginBottom: '8px' }}>Step {index + 1}</h3>
+                  <h4 style={{ fontSize: '20px', fontFamily: 'var(--font-serif)', color: activeTab === 'renter' ? 'var(--coral)' : 'var(--slate)', marginBottom: '12px' }}>{step.title}</h4>
+                  <p style={{ fontSize: '15px', color: 'var(--slate)', lineHeight: '1.6', maxWidth: '320px', margin: '0 auto' }}>{step.desc}</p>
+                </div>
+              ))}
             </div>
 
             <div style={{ textAlign: 'center', marginTop: '64px' }}>
@@ -179,6 +160,11 @@ const HowItWorks = () => {
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+          .hide-on-mobile { display: none !important; }
+          .mobile-only { display: flex !important; }
+          h1 { font-size: 36px !important; }
         }
       `}</style>
     </div>

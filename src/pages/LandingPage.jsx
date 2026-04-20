@@ -10,13 +10,13 @@ const LandingPage = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section style={{ 
+      <section className="responsive-flex-reverse" style={{ 
         display: 'flex', 
-        height: 'calc(100vh - 80px)',
+        minHeight: 'calc(100vh - 80px)',
         borderBottom: '1px solid rgba(0,0,0,0.05)'
       }}>
         {/* Left Content */}
-        <div style={{ 
+        <div className="responsive-split-half mobile-p-y" style={{ 
           flex: 1, 
           padding: '80px var(--margin-x)',
           display: 'flex',
@@ -47,7 +47,7 @@ const LandingPage = () => {
         </div>
 
         {/* Right Imagery */}
-        <div style={{ flex: 1, position: 'relative' }}>
+        <div className="responsive-split-half" style={{ flex: 1, position: 'relative', minHeight: '40vh' }}>
           <img 
             src="/hero_gown.png" 
             alt="Editorial Fashion" 
@@ -58,7 +58,7 @@ const LandingPage = () => {
 
       {/* Trust & Process Bar */}
       <section style={{ padding: '80px 0', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div className="container responsive-flex" style={{ display: 'flex', justifyContent: 'space-between', gap: '40px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
              <div style={{ padding: '16px', backgroundColor: 'var(--midnight)', borderRadius: '50%' }}>
                <Sparkles color="var(--champagne)" size={24} />
@@ -97,7 +97,7 @@ const LandingPage = () => {
             <Link to="/browse" style={{ fontWeight: '600', borderBottom: '1px solid var(--midnight)' }}>View All Occasions</Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '40px' }}>
+          <div className="occasion-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '40px' }}>
             {/* Box 1 */}
             <div style={{ position: 'relative', height: '500px', borderRadius: 'var(--radius-sharp)', overflow: 'hidden' }}>
               <img src="/lehenga.png" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -127,6 +127,13 @@ const LandingPage = () => {
       </section>
 
       <Footer />
+      <style>{`
+        @media (max-width: 768px) {
+          .occasion-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

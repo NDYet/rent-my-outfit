@@ -30,32 +30,34 @@ const ProductDetail = () => {
     <div style={{ backgroundColor: 'var(--cream)', minHeight: '100vh' }}>
       <Navbar />
       
-      <main className="container" style={{ padding: '80px var(--margin-x)', display: 'flex', gap: '80px' }}>
+      <main className="container responsive-flex" style={{ padding: '80px var(--margin-x)', display: 'flex', gap: '80px' }}>
         {/* Left Column: Visuals */}
-        <div style={{ flex: '0 0 55%' }}>
+        <div className="visuals-col" style={{ flex: '0 0 55%' }}>
           <div style={{ position: 'relative', marginBottom: '24px', display: 'flex', gap: '20px', overflow: 'hidden' }}>
             <div style={{ flex: '0 0 100%', borderRadius: 'var(--radius-sharp)', overflow: 'hidden' }}>
               <img src={product.images[activeThumb]} alt={product.name} style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }} />
             </div>
             {/* Partially visible next image to encourage swipe/scroll feel */}
-            <div style={{ flex: '0 0 20%', borderRadius: 'var(--radius-sharp)', overflow: 'hidden', opacity: 0.5 }}>
+            <div className="hide-on-mobile" style={{ flex: '0 0 20%', borderRadius: 'var(--radius-sharp)', overflow: 'hidden', opacity: 0.5 }}>
               <img src={product.images[(activeThumb + 1) % product.images.length]} alt="Next" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }} />
             </div>
           </div>
           
-          <div style={{ display: 'flex', gap: '16px' }}>
+          <div className="thumbnails-wrapper" style={{ display: 'flex', gap: '16px', overflowX: 'auto', paddingBottom: '10px' }}>
             {product.images.map((img, i) => (
               <div 
                 key={i} 
                 onClick={() => setActiveThumb(i)}
                 style={{
+                  minWidth: '80px',
                   width: '80px',
                   height: '80px',
                   borderRadius: 'var(--radius-sharp)',
                   overflow: 'hidden',
                   cursor: 'pointer',
                   border: activeThumb === i ? '2px solid var(--champagne)' : 'none',
-                  opacity: activeThumb === i ? 1 : 0.6
+                  opacity: activeThumb === i ? 1 : 0.6,
+                  flexShrink: 0
                 }}
               >
                 <img src={img} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -63,12 +65,12 @@ const ProductDetail = () => {
             ))}
           </div>
 
-          <div style={{ marginTop: '80px' }}>
+          <div className="reviews-section" style={{ marginTop: '80px' }}>
             <h3 style={{ fontSize: '24px', marginBottom: '32px' }}>Renter Experiences</h3>
-            <div style={{ display: 'flex', gap: '40px', marginBottom: '48px' }}>
+            <div className="reviews-summary responsive-flex" style={{ display: 'flex', gap: '40px', marginBottom: '48px' }}>
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: '48px', fontWeight: '700' }}>4.9</div>
-                <div style={{ display: 'flex', gap: '2px', color: 'var(--champagne)' }}>
+                <div style={{ display: 'flex', gap: '2px', color: 'var(--champagne)', justifyContent: 'center' }}>
                   {[1,2,3,4,5].map(s => <Star key={s} size={14} fill="currentColor" />)}
                 </div>
                 <div style={{ fontSize: '12px', color: 'var(--slate)', marginTop: '8px' }}>124 REVIEWS</div>
@@ -108,11 +110,11 @@ const ProductDetail = () => {
         </div>
 
         {/* Right Column: Details & Booking */}
-        <div style={{ flex: '0 0 45%' }}>
-          <div style={{ position: 'sticky', top: '120px' }}>
+        <div className="details-col" style={{ flex: '0 0 45%' }}>
+          <div style={{ position: 'relative' }}>
             <div style={{ marginBottom: '32px' }}>
               <h1 style={{ fontSize: '40px', marginBottom: '16px' }}>{product.name}</h1>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
                 <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#eee' }} />
                 <div>
                   <div style={{ fontSize: '14px', color: 'var(--slate)' }}>Curated by</div>
@@ -120,13 +122,13 @@ const ProductDetail = () => {
                     {product.seller.name} <span style={{ fontWeight: '400', fontSize: '14px', color: 'var(--slate)' }}>★ {product.seller.rating} ({product.seller.reviews})</span>
                   </div>
                 </div>
-                <button style={{ marginLeft: 'auto', background: 'none', borderBottom: '1px solid var(--midnight)', fontSize: '12px', fontWeight: '700', padding: 0 }}>VIEW PROFILE</button>
+                <button style={{ background: 'none', borderBottom: '1px solid var(--midnight)', fontSize: '12px', fontWeight: '700', padding: 0 }}>VIEW PROFILE</button>
               </div>
             </div>
 
             <div style={{ marginBottom: '32px' }}>
               <h4 style={{ fontSize: '12px', fontWeight: '700', letterSpacing: '1px', marginBottom: '16px' }}>SELECT SIZE</h4>
-              <div style={{ display: 'flex', gap: '12px' }}>
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 {['XS', 'S', 'M', 'L'].map(size => (
                   <button 
                     key={size}
@@ -144,38 +146,40 @@ const ProductDetail = () => {
                     {size}
                   </button>
                 ))}
-                <div style={{ marginLeft: 'auto', alignSelf: 'center', fontSize: '12px', textDecoration: 'underline', cursor: 'pointer', fontWeight: '700' }}>SIZE GUIDE</div>
+                <div style={{ alignSelf: 'center', fontSize: '12px', textDecoration: 'underline', cursor: 'pointer', fontWeight: '700' }}>SIZE GUIDE</div>
               </div>
             </div>
 
             <div style={{ marginBottom: '32px' }}>
               <h4 style={{ fontSize: '12px', fontWeight: '700', letterSpacing: '1px', marginBottom: '16px' }}>PICK RENTAL DATES</h4>
-              <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: 'var(--radius-sharp)' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                  <ChevronLeft size={20} />
-                  <span style={{ fontWeight: '700' }}>DECEMBER 2024</span>
-                  <ChevronRight size={20} />
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '8px', textAlign: 'center', fontSize: '12px' }}>
-                  {['MO','TU','WE','TH','FR','SA','SU'].map(d => <div key={d} style={{ color: 'var(--slate)', fontWeight: '700' }}>{d}</div>)}
-                  {Array.from({ length: 31 }).map((_, i) => {
-                    const day = i + 1;
-                    const isSelected = day >= rentDates.start && day <= rentDates.end;
-                    const isBooked = day === 5 || day === 6;
-                    return (
-                      <div key={i} style={{
-                        padding: '10px 0',
-                        cursor: isBooked ? 'default' : 'pointer',
-                        backgroundColor: isSelected ? 'var(--coral)' : isBooked ? 'rgba(0,0,0,0.05)' : 'transparent',
-                        color: isSelected ? 'white' : isBooked ? 'var(--slate)' : 'inherit',
-                        borderRadius: '2px',
-                        fontWeight: isSelected ? '700' : '400',
-                        opacity: isBooked ? 0.3 : 1
-                      }}>
-                        {day}
-                      </div>
-                    );
-                  })}
+              <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: 'var(--radius-sharp)', overflowX: 'auto' }}>
+                <div style={{ minWidth: '280px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+                    <ChevronLeft size={20} />
+                    <span style={{ fontWeight: '700' }}>DECEMBER 2024</span>
+                    <ChevronRight size={20} />
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '8px', textAlign: 'center', fontSize: '12px' }}>
+                    {['MO','TU','WE','TH','FR','SA','SU'].map(d => <div key={d} style={{ color: 'var(--slate)', fontWeight: '700' }}>{d}</div>)}
+                    {Array.from({ length: 31 }).map((_, i) => {
+                      const day = i + 1;
+                      const isSelected = day >= rentDates.start && day <= rentDates.end;
+                      const isBooked = day === 5 || day === 6;
+                      return (
+                        <div key={i} style={{
+                          padding: '10px 0',
+                          cursor: isBooked ? 'default' : 'pointer',
+                          backgroundColor: isSelected ? 'var(--coral)' : isBooked ? 'rgba(0,0,0,0.05)' : 'transparent',
+                          color: isSelected ? 'white' : isBooked ? 'var(--slate)' : 'inherit',
+                          borderRadius: '2px',
+                          fontWeight: isSelected ? '700' : '400',
+                          opacity: isBooked ? 0.3 : 1
+                        }}>
+                          {day}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
@@ -231,6 +235,13 @@ const ProductDetail = () => {
       </main>
 
       <Footer />
+      <style>{`
+        @media (max-width: 992px) {
+          .visuals-col, .details-col {
+            flex: 0 0 100% !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

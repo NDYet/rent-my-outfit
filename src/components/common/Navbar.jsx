@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { User } from 'lucide-react';
+import { User, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
-  const { user, logout } = useAuth(); // Read the authentication context
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleAccountClick = () => {
+    setIsMobileMenuOpen(false);
     if (!user) {
       navigate('/login');
     } else if (user.role === 'admin') {
@@ -15,9 +17,13 @@ const Navbar = () => {
     } else if (user.role === 'seller') {
       navigate('/seller/dashboard');
     } else {
-      // Assuming a generic buyer dashboard or default route
       navigate('/browse'); 
     }
+  };
+
+  const handleLogout = () => {
+    setIsMobileMenuOpen(false);
+    logout();
   };
 
   return (
@@ -34,12 +40,14 @@ const Navbar = () => {
       <div className="logo" style={{
         fontFamily: 'var(--font-serif)',
         fontSize: '24px',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        zIndex: 1100
       }}>
-        <Link to="/">RentMyFit</Link>
+        <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>RentMyFit</Link>
       </div>
 
-      <div className="nav-links" style={{
+      {/* Desktop Links */}
+      <div className="nav-links hide-on-mobile" style={{
         display: 'flex',
         gap: '40px',
         fontSize: '14px',
@@ -51,7 +59,8 @@ const Navbar = () => {
         <Link to="/how-it-works">How It Works</Link>
       </div>
 
-      <div className="nav-actions" style={{
+      {/* Desktop Actions */}
+      <div className="nav-actions hide-on-mobile" style={{
         display: 'flex',
         alignItems: 'center',
         gap: '24px'
@@ -75,10 +84,10 @@ const Navbar = () => {
               }}
             >
               <User size={16} />
-              {user.role === 'admin' ? 'Admin Portal' : user.role === 'seller' ? 'Seller Hub' : 'My Dashboard'}
+              {user.role === 'admin' ? 'Admin' : user.role === 'seller' ? 'Seller Hub' : 'Dashboard'}
             </button>
             <button 
-              onClick={() => logout()}
+              onClick={handleLogout}
               style={{
                 background: 'none',
                 border: 'none',
@@ -112,6 +121,80 @@ const Navbar = () => {
           </Link>
         )}
       </div>
+
+      {/* Mobile Menu Toggle */}
+      <button 
+        className="mobile-toggle"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        style={{
+          display: 'none',
+          background: 'none',
+          border: 'none',
+          color: 'var(--midnight)',
+          zIndex: 1100
+        }}
+      >
+        {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+      </button>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: 'var(--cream)',
+          zIndex: 1050,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '32px'
+        }}>
+          <Link to="/browse" onClick={() => setIsMobileMenuOpen(false)} style={{ fontSize: '24px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px' }}>Browse</Link>
+          <Link to="/how-it-works" onClick={() => setIsMobileMenuOpen(false)} style={{ fontSize: '24px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px' }}>How It Works</Link>
+          <div style={{ height: '1px', width: '60px', backgroundColor: 'var(--midnight)', opacity: 0.2 }}></div>
+          <button 
+            onClick={handleAccountClick}
+            style={{ 
+              fontSize: '20px', 
+              fontWeight: 'bold', 
+              textTransform: 'uppercase', 
+              letterSpacing: '2px',
+              background: 'none',
+              color: 'var(--midnight)'
+            }}
+          >
+            {user ? 'My Account' : 'Login / Sign Up'}
+          </button>
+          {user && (
+            <button 
+              onClick={handleLogout}
+              style={{ 
+                fontSize: '16px', 
+                fontWeight: '600', 
+                textTransform: 'uppercase', 
+                letterSpacing: '2px',
+                background: 'none',
+                color: 'var(--coral)'
+              }}
+            >
+              Log Out
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Responsive Styles Injection */}
+      <style>{`
+        @media (max-width: 768px) {
+          .mobile-toggle {
+            display: block !important;
+          }
+        }
+      `}</style>
     </nav>
   );
 };
