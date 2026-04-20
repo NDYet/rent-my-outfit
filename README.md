@@ -1,16 +1,18 @@
-# React + Vite
+# RentMyFit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, high-fashion circular wardrobe marketplace.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Rent or Curate**: A dual-sided platform for fashion renters and curators.
+- **Dispute resolution center**: Manage damage claims with photo evidence and chat logs.
+- **Seller KYC & verification**: ID verification, address proof, bank account linking.
+- **Platform analytics**: GMV, active users, churn, top categories — all in one view.
+- **Catalog quality control**: Review & approve new listings before they go live.
+- **Payout management**: Batch process seller payouts weekly/bi-weekly.
+- **Trust & safety flags**: Auto-flag suspicious patterns: repeated no-shows, bad reviews.
+- **Campaign & promo manager**: Create discount codes, seasonal offers.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+- Frontend: React + Vite + CSS Variables
+- Styling: Custom Brutalist Dark Theme with Midnight & Coral accents
